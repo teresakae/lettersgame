@@ -45,9 +45,73 @@
     </div>
   </div>
 
-  <div id="page-2" class="page">
-    <div class="coming-soon-card">
-      <p>Page 2 coming soon ♡</p>
+  <!-- ══════════════════════════════════════════
+       PAGE 2 — Wordle Game
+  ══════════════════════════════════════════ -->
+  <div id="page-2" class="page wordle-page">
+    <div class="wordle-wrap">
+
+      <!-- Header -->
+      <div class="wordle-header">
+        <div class="wordle-title-row">
+          <div class="title-line"></div>
+          <h2 class="wordle-title">Guess the Word ♡</h2>
+          <div class="title-line"></div>
+        </div>
+        <p class="wordle-subtitle">5 letters · 6 tries</p>
+      </div>
+
+      <div id="wordle-toast" class="wordle-toast" aria-live="polite"></div>
+
+      <div id="wordle-grid" class="wordle-grid" aria-label="Wordle guess grid">
+      </div>
+
+
+      <div id="wordle-keyboard" class="wordle-keyboard" aria-label="On-screen keyboard">
+        <!-- Row 1 -->
+        <div class="kb-row">
+          <button class="kb-key" data-key="q">q</button>
+          <button class="kb-key" data-key="w">w</button>
+          <button class="kb-key" data-key="e">e</button>
+          <button class="kb-key" data-key="r">r</button>
+          <button class="kb-key" data-key="t">t</button>
+          <button class="kb-key" data-key="y">y</button>
+          <button class="kb-key" data-key="u">u</button>
+          <button class="kb-key" data-key="i">i</button>
+          <button class="kb-key" data-key="o">o</button>
+          <button class="kb-key" data-key="p">p</button>
+        </div>
+        <!-- Row 2 -->
+        <div class="kb-row">
+          <button class="kb-key" data-key="a">a</button>
+          <button class="kb-key" data-key="s">s</button>
+          <button class="kb-key" data-key="d">d</button>
+          <button class="kb-key" data-key="f">f</button>
+          <button class="kb-key" data-key="g">g</button>
+          <button class="kb-key" data-key="h">h</button>
+          <button class="kb-key" data-key="j">j</button>
+          <button class="kb-key" data-key="k">k</button>
+          <button class="kb-key" data-key="l">l</button>
+        </div>
+        <!-- Row 3 -->
+        <div class="kb-row">
+          <button class="kb-key kb-key--wide" data-key="Enter">Enter</button>
+          <button class="kb-key" data-key="z">z</button>
+          <button class="kb-key" data-key="x">x</button>
+          <button class="kb-key" data-key="c">c</button>
+          <button class="kb-key" data-key="v">v</button>
+          <button class="kb-key" data-key="b">b</button>
+          <button class="kb-key" data-key="n">n</button>
+          <button class="kb-key" data-key="m">m</button>
+          <button class="kb-key kb-key--wide" data-key="Backspace">⌫</button>
+        </div>
+      </div>
+
+      <div id="wordle-actions" class="wordle-actions" hidden>
+        <button id="btn-continue" class="btn-pink" hidden>Continue ♡</button>
+        <button id="btn-retry"    class="btn-pink btn-pink--outline" hidden>Try Again ♡</button>
+      </div>
+
     </div>
   </div>
 
