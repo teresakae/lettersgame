@@ -1,0 +1,223 @@
+
+:root {
+  --pink:        #ffb6c1;
+  --blush:       #ffe4e1;
+  --rose-deep:   #f48fb1;
+  --grey-light:  #d4d4d4;
+  --grey-text:   #a0a0a0;
+  --white:       #ffffff;
+  --card-bg:     #fffafa;  
+  --shadow:      rgba(244, 143, 177, 0.18);
+  --font-main:   'Shadows Into Light', cursive;
+  --font-title:  'Caveat', cursive;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; 
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--blush);
+  background-image:
+    radial-gradient(circle at 20% 20%, #ffd6e0 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, #fce4ec 0%, transparent 50%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.6s ease both;
+}
+
+.page.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1);    }
+  to   { opacity: 0; transform: scale(0.97); }
+}
+
+.letter-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1.5px solid var(--pink);
+  border-radius: 18px;
+  box-shadow:
+    0 8px 40px var(--shadow),
+    0 2px 8px rgba(255, 182, 193, 0.15),
+    inset 0 0 60px rgba(255, 228, 225, 0.3);
+  max-width: 560px;
+  width: 100%;
+  padding: 3.5rem 3rem 3rem;
+  text-align: center;
+
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(255, 182, 193, 0.12) 31px,
+    rgba(255, 182, 193, 0.12) 32px
+  );
+}
+
+.corner {
+  position: absolute;
+  font-size: 1.3rem;
+  color: var(--pink);
+  line-height: 1;
+  opacity: 0.7;
+}
+.corner--tl { top: 10px;    left:  14px; }
+.corner--tr { top: 10px;    right: 14px; transform: scaleX(-1); }
+.corner--bl { bottom: 10px; left:  14px; transform: scaleY(-1); }
+.corner--br { bottom: 10px; right: 14px; transform: scale(-1);  }
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: 50px;
+  width: 48px;
+  height: 48px;
+  border: 2px dashed var(--pink);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  opacity: 0.5;
+  rotate: 8deg;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.title-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--pink), transparent);
+  max-width: 80px;
+}
+
+.card-title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  color: #c2637a;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.card-blurb {
+  font-family: var(--font-main);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  color: #b06070;
+  line-height: 1.8;
+  max-width: 380px;
+}
+
+.card-blurb em {
+  font-style: italic;
+  color: var(--rose-deep);
+}
+
+.heart-divider {
+  font-size: 1.2rem;
+  color: var(--pink);
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
+
+.btn-start {
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  color: #fff;
+  background: linear-gradient(135deg, #f9a8b8 0%, #f48fb1 100%);
+  border: none;
+  border-radius: 60px;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow:
+    0 4px 18px rgba(244, 143, 177, 0.4),
+    0 1px 4px rgba(244, 143, 177, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+
+  min-height: 56px;
+  min-width: 180px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn-start:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(244, 143, 177, 0.5);
+}
+
+.btn-start:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 10px rgba(244, 143, 177, 0.3);
+}
+
+.coming-soon-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--pink);
+  border-radius: 18px;
+  box-shadow: 0 8px 40px var(--shadow);
+  padding: 3rem 4rem;
+  text-align: center;
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  color: #c2637a;
+}
+
+@media (max-width: 600px) {
+  .letter-card {
+    padding: 2.5rem 1.75rem 2.5rem;
+  }
+
+  .stamp {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .letter-card {
+    padding: 4rem 4rem 3.5rem;
+  }
+}
