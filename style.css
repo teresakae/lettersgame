@@ -1,3 +1,9 @@
+/* ════════════════════════════════════════════
+   GIFT WEBSITE — style.css
+   Global design: soft, romantic, handwritten
+════════════════════════════════════════════ */
+
+/* ── Variables ─────────────────────────────── */
 :root {
   --pink:        #ffb6c1;
   --blush:       #ffe4e1;
@@ -5,12 +11,13 @@
   --grey-light:  #d4d4d4;
   --grey-text:   #a0a0a0;
   --white:       #ffffff;
-  --card-bg:     #fffafa;  
+  --card-bg:     #fffafa;   /* snow-white with the faintest blush */
   --shadow:      rgba(244, 143, 177, 0.18);
   --font-main:   'Shadows Into Light', cursive;
   --font-title:  'Caveat', cursive;
 }
 
+/* ── Reset & Base ──────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -20,7 +27,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden; 
+  overflow: hidden; /* pages handle their own scroll */
 }
 
 body {
@@ -35,6 +42,7 @@ body {
   justify-content: center;
 }
 
+/* ── Page System ────────────────────────────── */
 .page {
   display: none;
   width: 100%;
@@ -59,6 +67,7 @@ body {
   to   { opacity: 0; transform: scale(0.97); }
 }
 
+/* ── Letter Card — Page 1 ───────────────────── */
 .letter-card {
   position: relative;
   background: var(--card-bg);
@@ -73,6 +82,7 @@ body {
   padding: 3.5rem 3rem 3rem;
   text-align: center;
 
+  /* Subtle ruled-paper lines */
   background-image: repeating-linear-gradient(
     transparent,
     transparent 31px,
@@ -81,6 +91,7 @@ body {
   );
 }
 
+/* Corner flourishes */
 .corner {
   position: absolute;
   font-size: 1.3rem;
@@ -93,6 +104,7 @@ body {
 .corner--bl { bottom: 10px; left:  14px; transform: scaleY(-1); }
 .corner--br { bottom: 10px; right: 14px; transform: scale(-1);  }
 
+/* Stamp */
 .stamp {
   position: absolute;
   top: 18px;
@@ -109,6 +121,7 @@ body {
   rotate: 8deg;
 }
 
+/* Card inner content */
 .card-inner {
   display: flex;
   flex-direction: column;
@@ -117,6 +130,7 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Title row with lines */
 .title-wrap {
   display: flex;
   align-items: center;
@@ -141,6 +155,7 @@ body {
   white-space: nowrap;
 }
 
+/* Blurb */
 .card-blurb {
   font-family: var(--font-main);
   font-size: clamp(1.15rem, 2.5vw, 1.4rem);
@@ -154,6 +169,7 @@ body {
   color: var(--rose-deep);
 }
 
+/* Heart divider */
 .heart-divider {
   font-size: 1.2rem;
   color: var(--pink);
@@ -161,6 +177,7 @@ body {
   opacity: 0.8;
 }
 
+/* Start Button */
 .btn-start {
   font-family: var(--font-main);
   font-size: 1.4rem;
@@ -175,6 +192,7 @@ body {
     0 4px 18px rgba(244, 143, 177, 0.4),
     0 1px 4px rgba(244, 143, 177, 0.2);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+  /* Touch-friendly — large tap target */
   min-height: 56px;
   min-width: 180px;
   -webkit-tap-highlight-color: transparent;
@@ -191,6 +209,7 @@ body {
   box-shadow: 0 2px 10px rgba(244, 143, 177, 0.3);
 }
 
+/* ── Coming Soon Card — Page 2 ──────────────── */
 .coming-soon-card {
   background: var(--card-bg);
   border: 1.5px solid var(--pink);
@@ -203,6 +222,7 @@ body {
   color: #c2637a;
 }
 
+/* ── Tablet optimisations ───────────────────── */
 @media (max-width: 600px) {
   .letter-card {
     padding: 2.5rem 1.75rem 2.5rem;
@@ -219,6 +239,11 @@ body {
   }
 }
 
+/* ══════════════════════════════════════════════
+   PAGE 2 — WORDLE GAME
+══════════════════════════════════════════════ */
+
+/* ── Wordle page wrapper ────────────────────── */
 .wordle-page {
   align-items: flex-start;
   overflow-y: auto;
@@ -236,6 +261,7 @@ body {
   padding-top: 0.5rem;
 }
 
+/* ── Header ─────────────────────────────────── */
 .wordle-header {
   text-align: center;
   width: 100%;
@@ -265,6 +291,7 @@ body {
   letter-spacing: 1px;
 }
 
+/* ── Toast message ──────────────────────────── */
 .wordle-toast {
   font-family: var(--font-main);
   font-size: 1.25rem;
@@ -286,6 +313,7 @@ body {
   opacity: 1;
 }
 
+/* ── Guess Grid ─────────────────────────────── */
 .wordle-grid {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
@@ -373,6 +401,7 @@ body {
 
 .wordle-tile.bounce { animation: bounce 0.6s ease both; }
 
+/* ── On-screen Keyboard ─────────────────────── */
 .wordle-keyboard {
   display: flex;
   flex-direction: column;
@@ -437,6 +466,7 @@ body {
   color: #aaa;
 }
 
+/* ── Post-game Actions ──────────────────────── */
 .wordle-actions {
   display: flex;
   gap: 1rem;
@@ -479,4 +509,281 @@ body {
 .btn-pink--outline:hover {
   background: var(--blush);
   box-shadow: 0 4px 14px rgba(244, 143, 177, 0.2);
+}
+
+/* ══════════════════════════════════════════════
+   PAGES 3 / 5 / 7 — ENVELOPE LETTER
+══════════════════════════════════════════════ */
+
+/* ── Page layout ──────────────────────────── */
+.envelope-page {
+  overflow-y: auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.envelope-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── Label above envelope ─────────────────── */
+.envelope-label {
+  font-family: var(--font-main);
+  font-size: 1.3rem;
+  color: #c2637a;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+/* ── Envelope scene — stacks label / letter / envelope / button ── */
+/*
+   Key layout idea:
+   envelope-scene is a normal flex column.
+   .env-letter lives ABOVE .envelope-wrap in the DOM and in visual order.
+   Closed: letter is max-height:0 + opacity:0 (invisible, takes no space).
+   Open:   letter expands to full height with a smooth transition.
+   No absolute positioning on the letter — nothing can clip.
+*/
+
+.envelope-scene {
+  /* override the inherited gap so we can control spacing precisely */
+  gap: 0;
+  padding-bottom: 1rem;
+}
+
+.envelope-label {
+  margin-bottom: 1.4rem;
+}
+
+/* ── Letter card (centered over envelope, revealed on open) ────────────── */
+.env-letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(500px, 90vw);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -30%);
+  transition:
+    opacity    0.4s  ease                            0.3s,
+    transform  0.5s  cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+  z-index: 10; 
+}
+
+.envelope-wrap.open .env-letter {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+}
+
+/* Inner paper card */
+.env-letter-inner {
+  background: #fffafa;
+  border: 2px dashed var(--pink);
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(244, 143, 177, 0.25);
+  width: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Actual letter image */
+.letter-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Placeholder shown when image hasn't loaded yet */
+.letter-placeholder {
+  font-family: var(--font-main);
+  font-size: 1.3rem;
+  color: #d4a0aa;
+  text-align: center;
+  padding: 3rem 2rem;
+  width: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(255, 182, 193, 0.15) 31px,
+    rgba(255, 182, 193, 0.15) 32px
+  );
+}
+
+/* ── Envelope wrapper ─────────────────────── */
+/*
+   CSS-drawn envelope. Layers (z low → high):
+     1. env-flap--back  : bottom V triangle (behind body)
+     2. env-pocket      : main white rectangle
+     3. env-flap--left  : left triangle fold
+     4. env-flap--right : right triangle fold
+     5. env-flap--top   : top flap (rotates open)
+     6. env-seal        : heart button on top flap
+*/
+.envelope-wrap {
+  position: relative;
+  width: min(380px, 90vw);
+  margin-bottom: 1.8rem;
+  /* perspective so rotateX looks 3-D */
+  perspective: 600px;
+}
+
+/* ── Envelope body container ──────────────── */
+.envelope-body {
+  position: relative;
+  width: 100%;
+  padding-bottom: 65%;   /* ~3:2 envelope ratio */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Shared absolute positioning for all flap/pocket pieces */
+.env-flap,
+.env-pocket {
+  position: absolute;
+}
+
+/* Back bottom V — gives a paper-fold depth feel */
+.env-flap--back {
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background: var(--blush);
+  clip-path: polygon(0 100%, 50% 0%, 100% 100%);
+  z-index: 1;
+}
+
+/* Main envelope body rectangle */
+.env-pocket {
+  inset: 0;
+  background: var(--white);
+  border: 2px solid var(--pink);
+  border-radius: 6px;
+  box-shadow: 0 6px 30px rgba(244, 143, 177, 0.2);
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Left side triangle fold */
+.env-flap--left {
+  top: 0; left: 0; bottom: 0;
+  width: 52%;
+  background: #ffd6e0;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  z-index: 3;
+}
+
+/* Right side triangle fold */
+.env-flap--right {
+  top: 0; right: 0; bottom: 0;
+  width: 52%;
+  background: #ffd6e0;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  z-index: 3;
+}
+
+/* Top flap — rotates back when open */
+.env-flap--top {
+  top: 0; left: 0; right: 0;
+  height: 55%;
+  background: var(--pink);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  z-index: 4;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s ease;
+  backface-visibility: hidden;
+}
+
+/* Wax seal button — centered on the top flap */
+.env-seal {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f9a8b8, #f48fb1);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(244, 143, 177, 0.5);
+  font-size: 1.4rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  padding: 0;
+}
+
+.env-seal:active {
+  transform: translate(-50%, -50%) scale(0.88);
+}
+
+/* ── Open state ───────────────────────────── */
+.envelope-wrap.open .env-flap--top {
+  transform: rotateX(-175deg);
+  background: #f9c8d4;
+}
+
+.envelope-wrap.open .env-seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Continue button ──────────────────────── */
+.env-continue {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+  position: relative;
+  z-index: 20;
+  margin-top: 2rem;
+}
+
+.env-continue:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive sizing ────────────────────── */
+@media (min-width: 600px) {
+  .envelope-wrap {
+    width: min(440px, 85vw);
+  }
+  .env-letter {
+    width: min(580px, 88vw);
+  }
+  .env-letter-inner {
+    min-height: 320px;
+  }
+}
+
+@media (min-width: 900px) {
+  .envelope-wrap {
+    width: 480px;
+  }
+  .env-letter {
+    width: 640px;
+  }
+  .env-letter-inner {
+    min-height: 400px;
+  }
 }

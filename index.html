@@ -11,14 +11,19 @@
 </head>
 <body>
 
+  <!-- ══════════════════════════════════════════
+       PAGE 1 — Landing / Letter
+  ══════════════════════════════════════════ -->
   <div id="page-1" class="page active">
     <div class="letter-card">
 
+      <!-- Decorative corner flourishes -->
       <span class="corner corner--tl">❧</span>
       <span class="corner corner--tr">❧</span>
       <span class="corner corner--bl">❧</span>
       <span class="corner corner--br">❧</span>
 
+      <!-- Stamp / postmark deco -->
       <div class="stamp">
         <span>✉</span>
       </div>
@@ -35,6 +40,7 @@
           <em>With all my heart.</em>
         </p>
 
+        <!-- Small heart divider -->
         <div class="heart-divider">· · ♡ · ·</div>
 
         <button class="btn-start" id="btn-start" aria-label="Start the experience">
@@ -61,12 +67,15 @@
         <p class="wordle-subtitle">5 letters · 6 tries</p>
       </div>
 
+      <!-- Toast message (win / lose) -->
       <div id="wordle-toast" class="wordle-toast" aria-live="polite"></div>
 
+      <!-- Guess grid -->
       <div id="wordle-grid" class="wordle-grid" aria-label="Wordle guess grid">
+        <!-- 6 rows × 5 tiles, built by JS -->
       </div>
 
-
+      <!-- On-screen keyboard -->
       <div id="wordle-keyboard" class="wordle-keyboard" aria-label="On-screen keyboard">
         <!-- Row 1 -->
         <div class="kb-row">
@@ -107,11 +116,122 @@
         </div>
       </div>
 
+      <!-- Post-game actions (hidden until win/lose) -->
       <div id="wordle-actions" class="wordle-actions" hidden>
         <button id="btn-continue" class="btn-pink" hidden>Continue ♡</button>
         <button id="btn-retry"    class="btn-pink btn-pink--outline" hidden>Try Again ♡</button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 3 — Envelope Letter A
+  ══════════════════════════════════════════ -->
+  <div id="page-3" class="page envelope-page">
+    <div class="envelope-scene">
+      <p class="envelope-label">A letter for you ♡</p>
+
+      <div class="envelope-wrap" id="env-3">
+
+        <!-- Letter card — hidden above, expands down when open -->
+        <div class="env-letter">
+          <div class="env-letter-inner">
+            <img
+              src="assets/letter-a.png"
+              alt="Letter A"
+              class="letter-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+          </div>
+        </div>
+
+        <!-- The envelope body (CSS-drawn) -->
+        <div class="envelope-body">
+          <div class="env-flap env-flap--back"></div>
+          <div class="env-pocket"></div>
+          <div class="env-flap env-flap--left"></div>
+          <div class="env-flap env-flap--right"></div>
+          <div class="env-flap env-flap--top"></div>
+          <button class="env-seal" aria-label="Open envelope">♡</button>
+        </div>
+
+      </div>
+
+      <button class="btn-pink env-continue" id="env-3-continue" hidden>Continue ♡</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 5 — Envelope Letter B
+  ══════════════════════════════════════════ -->
+  <div id="page-5" class="page envelope-page">
+    <div class="envelope-scene">
+      <p class="envelope-label">A letter for you ♡</p>
+
+      <div class="envelope-wrap" id="env-5">
+
+        <div class="env-letter">
+          <div class="env-letter-inner">
+            <img
+              src="assets/letter-b.png"
+              alt="Letter B"
+              class="letter-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+          </div>
+        </div>
+
+        <div class="envelope-body">
+          <div class="env-flap env-flap--back"></div>
+          <div class="env-pocket"></div>
+          <div class="env-flap env-flap--left"></div>
+          <div class="env-flap env-flap--right"></div>
+          <div class="env-flap env-flap--top"></div>
+          <button class="env-seal" aria-label="Open envelope">♡</button>
+        </div>
+
+      </div>
+
+      <button class="btn-pink env-continue" id="env-5-continue" hidden>Continue ♡</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PAGE 7 — Envelope Letter C
+  ══════════════════════════════════════════ -->
+  <div id="page-7" class="page envelope-page">
+    <div class="envelope-scene">
+      <p class="envelope-label">A letter for you ♡</p>
+
+      <div class="envelope-wrap" id="env-7">
+
+        <div class="env-letter">
+          <div class="env-letter-inner">
+            <img
+              src="assets/letter-c.png"
+              alt="Letter C"
+              class="letter-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+          </div>
+        </div>
+
+        <div class="envelope-body">
+          <div class="env-flap env-flap--back"></div>
+          <div class="env-pocket"></div>
+          <div class="env-flap env-flap--left"></div>
+          <div class="env-flap env-flap--right"></div>
+          <div class="env-flap env-flap--top"></div>
+          <button class="env-seal" aria-label="Open envelope">♡</button>
+        </div>
+
+      </div>
+
+      <button class="btn-pink env-continue" id="env-7-continue" hidden>Continue ♡</button>
     </div>
   </div>
 

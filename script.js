@@ -1,12 +1,21 @@
-// Page Registry
+/* ════════════════════════════════════════════
+   GIFT WEBSITE — script.js
+   Navigation system + page-specific logic
+════════════════════════════════════════════ */
+
+// ── Page Registry ────────────────────────────
 const PAGES = [
   'page-1',
   'page-2',
-  // 'page-3',
+  'page-3',
   // 'page-4',
+  'page-5',
+  // 'page-6',
+  'page-7',
+  // 'page-8',
 ];
 
-// Core Navigation 
+// ── Core Navigation ──────────────────────────
 
 function goToPage(targetId, onDone) {
   const current = document.querySelector('.page.active');
@@ -41,7 +50,7 @@ function goToNextPage() {
   goToPage(PAGES[idx + 1]);
 }
 
-// Page 1 — Landing
+// ── Page 1 — Landing ─────────────────────────
 (function initPage1() {
   const btn = document.getElementById('btn-start');
   if (!btn) return;
@@ -57,7 +66,7 @@ function goToNextPage() {
   }, { passive: true });
 })();
 
-// Page 2 — Wordle 
+// ── Page 2 — Wordle ───────────────────────────
 (function initPage2() {
 
   const WORD     = 'SHARK';
@@ -306,13 +315,70 @@ function goToNextPage() {
     handleKey(btn.dataset.key);
   });
 
+  // Action buttons
   btnCont.addEventListener('click', function() { goToPage('page-3'); });
   btnRet.addEventListener('click',  function() { resetGame(); });
 
+  // Init
   buildGrid();
 
 })();
 
+// ── Pages 3 / 5 / 7 — Envelope Letters ───────
+/*
+ * initEnvelopePage(pageId, nextPageId)
+ *   Shared factory — wires up a single envelope page.
+ *   Call once per envelope page at boot.
+ */
+function initEnvelopePage(pageId, nextPageId) {
+  var wrap    = document.getElementById('env-' + pageId.replace('page-', ''));
+  var contBtn = document.getElementById('env-' + pageId.replace('page-', '') + '-continue');
+
+  if (!wrap || !contBtn) return;
+
+  // Find the seal button inside this envelope
+  var seal = wrap.querySelector('.env-seal');
+
+  function openEnvelope() {
+    if (wrap.classList.contains('open')) return;   // already open
+
+    wrap.classList.add('open');
+
+    // Show Continue button after the letter animation finishes (~1s total)
+    setTimeout(function() {
+      contBtn.hidden = false;
+      // Trigger CSS transition: remove hidden then let opacity/transform animate
+      // (hidden attr removal happens sync; rAF ensures transition fires)
+      requestAnimationFrame(function() {
+        contBtn.style.opacity  = '';   // let the CSS rule take over
+      });
+    }, 900);
+  }
+
+  // Tap seal or anywhere on envelope body to open
+  seal.addEventListener('click', openEnvelope);
+  seal.addEventListener('touchend', function(e) {
+    e.preventDefault();   // prevent ghost click
+    openEnvelope();
+  });
+
+  // Continue button
+  contBtn.addEventListener('click', function() {
+    goToPage(nextPageId);
+    // Reset envelope for if/when user navigates back
+    setTimeout(function() {
+      wrap.classList.remove('open');
+      contBtn.hidden = true;
+    }, 500);
+  });
+}
+
+// Wire up each envelope page
+initEnvelopePage('page-3', 'page-4');
+initEnvelopePage('page-5', 'page-6');
+initEnvelopePage('page-7', 'page-8');
+
+// ── Global helpers ───────────────────────────
 function el(tag, className, text) {
   const e = document.createElement(tag);
   if (className) e.className = className;
