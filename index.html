@@ -11,227 +11,275 @@
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════
-       PAGE 1 — Landing / Letter
-  ══════════════════════════════════════════ -->
+  <!-- ═══ LETTER MODAL (shared by all envelope pages and gallery) ═══ -->
+  <div id="letter-modal" class="ltr-modal" hidden aria-modal="true" role="dialog">
+    <div class="ltr-modal-backdrop" id="letter-modal-backdrop"></div>
+    <div class="ltr-modal-inner">
+      <button class="ltr-modal-close" id="letter-modal-close" aria-label="Close letter">×</button>
+      <div class="ltr-modal-paper">
+        <img class="ltr-modal-img" id="letter-modal-img" src="" alt="Letter" />
+        <div class="ltr-modal-placeholder" id="letter-modal-placeholder">your letter here ♡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PAGE 1 — Landing ═══ -->
   <div id="page-1" class="page active">
     <div class="letter-card">
-
-      <!-- Decorative corner flourishes -->
       <span class="corner corner--tl">❧</span>
       <span class="corner corner--tr">❧</span>
       <span class="corner corner--bl">❧</span>
       <span class="corner corner--br">❧</span>
-
-      <!-- Stamp / postmark deco -->
-      <div class="stamp">
-        <span>✉</span>
-      </div>
-
+      <div class="stamp"><span>✉</span></div>
       <div class="card-inner">
         <div class="title-wrap">
           <div class="title-line"></div>
           <h1 class="card-title">For You</h1>
           <div class="title-line"></div>
         </div>
-
-        <p class="card-blurb">
-          A little something I made for you.<br />
-          <em>With all my heart.</em>
-        </p>
-
-        <!-- Small heart divider -->
+        <p class="card-blurb">A little something I made for you.<br /><em>With all my heart.</em></p>
         <div class="heart-divider">· · ♡ · ·</div>
+        <button class="btn-start" id="btn-start">Start ♡</button>
+      </div>
+    </div>
+  </div>
 
-        <button class="btn-start" id="btn-start" aria-label="Start the experience">
-          Start ♡
+  <!-- ═══ PAGE 2 — Wordle ═══ -->
+  <div id="page-2" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="wordle-wrap">
+        <div class="game-header">
+          <div class="title-row"><div class="title-line"></div><h2 class="game-title">Guess the Word ♡</h2><div class="title-line"></div></div>
+          <p class="game-subtitle">5 letters · 6 tries</p>
+        </div>
+        <div id="wordle-toast" class="wordle-toast" aria-live="polite"></div>
+        <div id="wordle-grid" class="wordle-grid"></div>
+        <div id="wordle-keyboard" class="wordle-keyboard">
+          <div class="kb-row">
+            <button class="kb-key" data-key="q">q</button><button class="kb-key" data-key="w">w</button><button class="kb-key" data-key="e">e</button><button class="kb-key" data-key="r">r</button><button class="kb-key" data-key="t">t</button><button class="kb-key" data-key="y">y</button><button class="kb-key" data-key="u">u</button><button class="kb-key" data-key="i">i</button><button class="kb-key" data-key="o">o</button><button class="kb-key" data-key="p">p</button>
+          </div>
+          <div class="kb-row">
+            <button class="kb-key" data-key="a">a</button><button class="kb-key" data-key="s">s</button><button class="kb-key" data-key="d">d</button><button class="kb-key" data-key="f">f</button><button class="kb-key" data-key="g">g</button><button class="kb-key" data-key="h">h</button><button class="kb-key" data-key="j">j</button><button class="kb-key" data-key="k">k</button><button class="kb-key" data-key="l">l</button>
+          </div>
+          <div class="kb-row">
+            <button class="kb-key kb-key--wide" data-key="Enter">Enter</button><button class="kb-key" data-key="z">z</button><button class="kb-key" data-key="x">x</button><button class="kb-key" data-key="c">c</button><button class="kb-key" data-key="v">v</button><button class="kb-key" data-key="b">b</button><button class="kb-key" data-key="n">n</button><button class="kb-key" data-key="m">m</button><button class="kb-key kb-key--wide" data-key="Backspace">⌫</button>
+          </div>
+        </div>
+        <div id="wordle-actions" class="game-actions" hidden>
+          <button id="btn-continue" class="btn-pink" hidden>Continue ♡</button>
+          <button id="btn-retry" class="btn-pink btn-pink--outline" hidden>Try Again ♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PAGE 3 — Letter A ═══ -->
+  <div id="page-3" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="env-page-scene">
+        <p class="envelope-label">A letter for you ♡</p>
+        <button class="env-page-btn" id="env-page-3-btn" data-src="assets/letter-a.png" aria-label="Open letter A">
+          <div class="env-page-env">
+            <div class="lme-flap"></div>
+            <div class="lme-body"></div>
+            <div class="lme-seal env-page-seal">♡</div>
+          </div>
+          <span class="env-page-tap">tap to open ♡</span>
         </button>
+        <button class="btn-pink env-page-continue" id="env-page-3-continue" hidden>Continue ♡</button>
       </div>
-
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       PAGE 2 — Wordle Game
-  ══════════════════════════════════════════ -->
-  <div id="page-2" class="page wordle-page">
-    <div class="wordle-wrap">
-
-      <!-- Header -->
-      <div class="wordle-header">
-        <div class="wordle-title-row">
-          <div class="title-line"></div>
-          <h2 class="wordle-title">Guess the Word ♡</h2>
-          <div class="title-line"></div>
+  <!-- ═══ PAGE 4 — Connections ═══ -->
+  <div id="page-4" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="conn-wrap">
+        <div class="game-header">
+          <div class="title-row"><div class="title-line"></div><h2 class="game-title">Connections ♡</h2><div class="title-line"></div></div>
+          <p class="game-subtitle">find the four groups of four</p>
         </div>
-        <p class="wordle-subtitle">5 letters · 6 tries</p>
-      </div>
-
-      <!-- Toast message (win / lose) -->
-      <div id="wordle-toast" class="wordle-toast" aria-live="polite"></div>
-
-      <!-- Guess grid -->
-      <div id="wordle-grid" class="wordle-grid" aria-label="Wordle guess grid">
-        <!-- 6 rows × 5 tiles, built by JS -->
-      </div>
-
-      <!-- On-screen keyboard -->
-      <div id="wordle-keyboard" class="wordle-keyboard" aria-label="On-screen keyboard">
-        <!-- Row 1 -->
-        <div class="kb-row">
-          <button class="kb-key" data-key="q">q</button>
-          <button class="kb-key" data-key="w">w</button>
-          <button class="kb-key" data-key="e">e</button>
-          <button class="kb-key" data-key="r">r</button>
-          <button class="kb-key" data-key="t">t</button>
-          <button class="kb-key" data-key="y">y</button>
-          <button class="kb-key" data-key="u">u</button>
-          <button class="kb-key" data-key="i">i</button>
-          <button class="kb-key" data-key="o">o</button>
-          <button class="kb-key" data-key="p">p</button>
+        <div id="conn-solved" class="conn-solved-area"></div>
+        <div id="conn-grid" class="conn-grid"></div>
+        <div class="conn-controls">
+          <button id="conn-shuffle" class="conn-ctrl-btn">Shuffle</button>
+          <button id="conn-deselect" class="conn-ctrl-btn" disabled>Deselect All</button>
+          <button id="conn-submit" class="conn-ctrl-btn conn-ctrl-submit" disabled>Submit</button>
         </div>
-        <!-- Row 2 -->
-        <div class="kb-row">
-          <button class="kb-key" data-key="a">a</button>
-          <button class="kb-key" data-key="s">s</button>
-          <button class="kb-key" data-key="d">d</button>
-          <button class="kb-key" data-key="f">f</button>
-          <button class="kb-key" data-key="g">g</button>
-          <button class="kb-key" data-key="h">h</button>
-          <button class="kb-key" data-key="j">j</button>
-          <button class="kb-key" data-key="k">k</button>
-          <button class="kb-key" data-key="l">l</button>
+        <div class="conn-mistakes-row">
+          <span class="conn-mistakes-label">mistakes remaining</span>
+          <div id="conn-mistakes" class="conn-mistakes-dots"></div>
         </div>
-        <!-- Row 3 -->
-        <div class="kb-row">
-          <button class="kb-key kb-key--wide" data-key="Enter">Enter</button>
-          <button class="kb-key" data-key="z">z</button>
-          <button class="kb-key" data-key="x">x</button>
-          <button class="kb-key" data-key="c">c</button>
-          <button class="kb-key" data-key="v">v</button>
-          <button class="kb-key" data-key="b">b</button>
-          <button class="kb-key" data-key="n">n</button>
-          <button class="kb-key" data-key="m">m</button>
-          <button class="kb-key kb-key--wide" data-key="Backspace">⌫</button>
+        <div id="conn-toast" class="conn-toast" aria-live="polite"></div>
+        <p id="conn-msg" class="conn-msg" hidden></p>
+        <div id="conn-actions" class="game-actions" hidden>
+          <button id="conn-continue" class="btn-pink" hidden>Continue ♡</button>
+          <button id="conn-retry" class="btn-pink btn-pink--outline" hidden>Try Again ♡</button>
         </div>
       </div>
-
-      <!-- Post-game actions (hidden until win/lose) -->
-      <div id="wordle-actions" class="wordle-actions" hidden>
-        <button id="btn-continue" class="btn-pink" hidden>Continue ♡</button>
-        <button id="btn-retry"    class="btn-pink btn-pink--outline" hidden>Try Again ♡</button>
-      </div>
-
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       PAGE 3 — Envelope Letter A
-  ══════════════════════════════════════════ -->
-  <div id="page-3" class="page envelope-page">
-    <div class="envelope-scene">
-      <p class="envelope-label">A letter for you ♡</p>
+  <!-- ═══ PAGE 5 — Letter B ═══ -->
+  <div id="page-5" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="env-page-scene">
+        <p class="envelope-label">A letter for you ♡</p>
+        <button class="env-page-btn" id="env-page-5-btn" data-src="assets/letter-b.png" aria-label="Open letter B">
+          <div class="env-page-env">
+            <div class="lme-flap"></div>
+            <div class="lme-body"></div>
+            <div class="lme-seal env-page-seal">♡</div>
+          </div>
+          <span class="env-page-tap">tap to open ♡</span>
+        </button>
+        <button class="btn-pink env-page-continue" id="env-page-5-continue" hidden>Continue ♡</button>
+      </div>
+    </div>
+  </div>
 
-      <div class="envelope-wrap" id="env-3">
+  <!-- ═══ PAGE 6 — Strands ═══ -->
+  <div id="page-6" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="strands-wrap">
+        <div class="game-header">
+          <div class="title-row"><div class="title-line"></div><h2 class="game-title">Strands ♡</h2><div class="title-line"></div></div>
+          <p class="game-subtitle">find all the hidden words</p>
+        </div>
+        <div class="strands-hint-bar-wrap">
+          <div class="strands-hint-segments" id="strands-hint-segments"></div>
+          <span class="strands-hint-label" id="strands-hint-label">find words to earn hints</span>
+        </div>
+        <div class="strands-hint-banner" id="strands-hint-banner" hidden>
+          <button class="strands-hint-dismiss" id="strands-hint-dismiss">×</button>
+          <span class="strands-hint-icon">💡</span>
+          <span class="strands-hint-text" id="strands-hint-text"></span>
+        </div>
+        <div id="strands-found" class="strands-found-row"></div>
+        <div id="strands-grid" class="strands-grid"></div>
+        <div id="strands-toast" class="strands-toast" hidden></div>
+        <div id="strands-actions" class="game-actions" hidden>
+          <button id="strands-continue" class="btn-pink" hidden>Continue ♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- Letter card — hidden above, expands down when open -->
-        <div class="env-letter">
-          <div class="env-letter-inner">
-            <img
-              src="assets/letter-a.png"
-              alt="Letter A"
-              class="letter-img"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+  <!-- ═══ PAGE 7 — Letter C ═══ -->
+  <div id="page-7" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="env-page-scene">
+        <p class="envelope-label">A letter for you ♡</p>
+        <button class="env-page-btn" id="env-page-7-btn" data-src="assets/letter-c.png" aria-label="Open letter C">
+          <div class="env-page-env">
+            <div class="lme-flap"></div>
+            <div class="lme-body"></div>
+            <div class="lme-seal env-page-seal">♡</div>
+          </div>
+          <span class="env-page-tap">tap to open ♡</span>
+        </button>
+        <button class="btn-pink env-page-continue" id="env-page-7-continue" hidden>Continue ♡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PAGE 8 — Code Lock & Final Reveal ═══ -->
+  <div id="page-8" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="lock-wrap">
+        <div class="game-header">
+          <div class="title-row"><div class="title-line"></div><h2 class="game-title">One Last Thing ♡</h2><div class="title-line"></div></div>
+          <p class="game-subtitle">enter the code to open the box</p>
+        </div>
+        <div class="lock-box-area">
+          <div class="lock-box" id="lock-box">
+            <div class="lock-box-lid">
+              <div class="lock-box-lid-stripe"></div>
+              <div class="lock-box-hasp" id="lock-hasp">
+                <div class="lock-hasp-shackle"></div>
+                <div class="lock-hasp-body">♡</div>
+              </div>
+            </div>
+            <div class="lock-box-body"><div class="lock-box-stripe"></div></div>
+          </div>
+          <div class="lock-box-reveal" id="lock-box-reveal" hidden>
+            <div class="lock-box-reveal-inner">
+              <img src="assets/letter-e.png" alt="Final Letter" class="letter-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+            </div>
+          </div>
+          <div class="lock-digits" id="lock-digits">
+            <div class="lock-digit" id="ld-0"></div>
+            <div class="lock-digit" id="ld-1"></div>
+            <div class="lock-digit" id="ld-2"></div>
+            <div class="lock-digit" id="ld-3"></div>
+          </div>
+          <div class="lock-numpad" id="lock-numpad">
+            <div class="lock-numpad-row">
+              <button class="lock-key" data-digit="1">1</button>
+              <button class="lock-key" data-digit="2">2</button>
+              <button class="lock-key" data-digit="3">3</button>
+            </div>
+            <div class="lock-numpad-row">
+              <button class="lock-key" data-digit="4">4</button>
+              <button class="lock-key" data-digit="5">5</button>
+              <button class="lock-key" data-digit="6">6</button>
+            </div>
+            <div class="lock-numpad-row">
+              <button class="lock-key" data-digit="7">7</button>
+              <button class="lock-key" data-digit="8">8</button>
+              <button class="lock-key" data-digit="9">9</button>
+            </div>
+            <div class="lock-numpad-row">
+              <button class="lock-key lock-key--wide" data-digit="del">⌫</button>
+              <button class="lock-key" data-digit="0">0</button>
+              <button class="lock-key lock-key--wide lock-key--empty"></button>
+            </div>
           </div>
         </div>
-
-        <!-- The envelope body (CSS-drawn) -->
-        <div class="envelope-body">
-          <div class="env-flap env-flap--back"></div>
-          <div class="env-pocket"></div>
-          <div class="env-flap env-flap--left"></div>
-          <div class="env-flap env-flap--right"></div>
-          <div class="env-flap env-flap--top"></div>
-          <button class="env-seal" aria-label="Open envelope">♡</button>
+        <div class="lock-divider">· · ♡ · ·</div>
+        <p class="lock-gallery-label">all your letters ♡</p>
+        <div class="lock-gallery" id="lock-gallery">
+          <button class="lock-env-btn" data-src="assets/letter-a.png" aria-label="Letter 1">
+            <div class="lock-mini-env"><div class="lme-flap"></div><div class="lme-body"></div><div class="lme-seal">♡</div></div>
+            <span class="lock-env-num">1</span>
+          </button>
+          <button class="lock-env-btn" data-src="assets/letter-b.png" aria-label="Letter 2">
+            <div class="lock-mini-env"><div class="lme-flap"></div><div class="lme-body"></div><div class="lme-seal">♡</div></div>
+            <span class="lock-env-num">2</span>
+          </button>
+          <button class="lock-env-btn" data-src="assets/letter-c.png" aria-label="Letter 3">
+            <div class="lock-mini-env"><div class="lme-flap"></div><div class="lme-body"></div><div class="lme-seal">♡</div></div>
+            <span class="lock-env-num">3</span>
+          </button>
+          <button class="lock-env-btn" data-src="assets/letter-d.png" aria-label="Letter 4">
+            <div class="lock-mini-env"><div class="lme-flap"></div><div class="lme-body"></div><div class="lme-seal">♡</div></div>
+            <span class="lock-env-num">4</span>
+          </button>
+          <button class="lock-env-btn lock-env-btn--locked" id="lock-env-5" data-src="assets/letter-e.png" aria-label="Letter 5 (locked)" disabled>
+            <div class="lock-mini-env"><div class="lme-flap"></div><div class="lme-body"></div><div class="lme-seal lme-seal--lock">🔒</div></div>
+            <span class="lock-env-num">5</span>
+          </button>
         </div>
-
       </div>
-
-      <button class="btn-pink env-continue" id="env-3-continue" hidden>Continue ♡</button>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       PAGE 5 — Envelope Letter B
-  ══════════════════════════════════════════ -->
-  <div id="page-5" class="page envelope-page">
-    <div class="envelope-scene">
-      <p class="envelope-label">A letter for you ♡</p>
-
-      <div class="envelope-wrap" id="env-5">
-
-        <div class="env-letter">
-          <div class="env-letter-inner">
-            <img
-              src="assets/letter-b.png"
-              alt="Letter B"
-              class="letter-img"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
+  <!-- ═══ PAGE 9 — Letter D ═══ -->
+  <div id="page-9" class="page page--scroll">
+    <div class="scroll-outer">
+      <div class="env-page-scene">
+        <p class="envelope-label">A letter for you ♡</p>
+        <button class="env-page-btn" id="env-page-9-btn" data-src="assets/letter-d.png" aria-label="Open letter D">
+          <div class="env-page-env">
+            <div class="lme-flap"></div>
+            <div class="lme-body"></div>
+            <div class="lme-seal env-page-seal">♡</div>
           </div>
-        </div>
-
-        <div class="envelope-body">
-          <div class="env-flap env-flap--back"></div>
-          <div class="env-pocket"></div>
-          <div class="env-flap env-flap--left"></div>
-          <div class="env-flap env-flap--right"></div>
-          <div class="env-flap env-flap--top"></div>
-          <button class="env-seal" aria-label="Open envelope">♡</button>
-        </div>
-
+          <span class="env-page-tap">tap to open ♡</span>
+        </button>
+        <button class="btn-pink env-page-continue" id="env-page-9-continue" hidden>Continue ♡</button>
       </div>
-
-      <button class="btn-pink env-continue" id="env-5-continue" hidden>Continue ♡</button>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       PAGE 7 — Envelope Letter C
-  ══════════════════════════════════════════ -->
-  <div id="page-7" class="page envelope-page">
-    <div class="envelope-scene">
-      <p class="envelope-label">A letter for you ♡</p>
-
-      <div class="envelope-wrap" id="env-7">
-
-        <div class="env-letter">
-          <div class="env-letter-inner">
-            <img
-              src="assets/letter-c.png"
-              alt="Letter C"
-              class="letter-img"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="letter-placeholder" style="display:none;">your letter here ♡</div>
-          </div>
-        </div>
-
-        <div class="envelope-body">
-          <div class="env-flap env-flap--back"></div>
-          <div class="env-pocket"></div>
-          <div class="env-flap env-flap--left"></div>
-          <div class="env-flap env-flap--right"></div>
-          <div class="env-flap env-flap--top"></div>
-          <button class="env-seal" aria-label="Open envelope">♡</button>
-        </div>
-
-      </div>
-
-      <button class="btn-pink env-continue" id="env-7-continue" hidden>Continue ♡</button>
     </div>
   </div>
 
