@@ -666,7 +666,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
       // Unlock env5 in the gallery so it can be tapped
       unlockEnv5();
       // Show letter-e in the fullscreen modal; X resets everything
-      openLetterModal('assets/letter-e.png', resetLock);
+      openLetterModal('assets/letter-e.jpg', resetLock);
     }, 900);
   }
 
