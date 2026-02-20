@@ -1,6 +1,3 @@
-/* ════════════════════════════════════════════
-   GIFT WEBSITE — style.css
-════════════════════════════════════════════ */
 
 :root {
   --pink:       #ffb6c1;
@@ -27,8 +24,6 @@ html, body {
     radial-gradient(circle at 80% 80%, #fce4ec 0%, transparent 50%);
 }
 
-/* ── Page system ─────────────────────────── */
-/* Every page fills the viewport exactly */
 .page {
   display: none;
   position: fixed;
@@ -39,8 +34,6 @@ html, body {
 }
 .page.active { display: flex; }
 
-/* Scrollable pages: the page itself is the fixed frame;
-   scroll-outer is the scrollable column inside it */
 .page--scroll {
   align-items: stretch;
   justify-content: stretch;
@@ -52,7 +45,6 @@ html, body {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Vertically centre content when it is shorter than the viewport */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,14 +52,11 @@ html, body {
   padding: 1.5rem 1rem 2rem;
 }
 
-/* When content is taller than the viewport, flex centering would hide
-   the top — so we let it overflow naturally */
 .scroll-outer > * { flex-shrink: 0; }
 
 @keyframes fadeIn  { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
 @keyframes fadeOut { from { opacity:1; } to { opacity:0; transform:scale(.97); } }
 
-/* ── Shared title / subtitle ─────────────── */
 .game-header { text-align: center; width: 100%; margin-bottom: .2rem; }
 
 .title-row {
@@ -95,7 +84,7 @@ html, body {
   flex-wrap: wrap; width: 100%; margin-top: .5rem;
 }
 
-/* ── Shared pink buttons ─────────────────── */
+/*Shared pink buttons*/
 .btn-start, .btn-pink {
   font-family: var(--font-main); font-size: 1.35rem; color: #fff;
   background: linear-gradient(135deg, #f9a8b8, #f48fb1);
@@ -115,9 +104,7 @@ html, body {
 }
 .btn-pink--outline:hover { background: var(--blush); }
 
-/* ═══════════════════════════════════════════
-   PAGE 1 — LANDING
-═══════════════════════════════════════════ */
+/* PAGE 1 — LANDING */
 .letter-card {
   position: relative;
   background: var(--card-bg);
@@ -197,25 +184,17 @@ html, body {
 .kb-key.present  { background: var(--blush); border-color: #f4c0b1; color: #c2637a; }
 .kb-key.absent   { background: var(--grey-light); border-color: var(--grey-light); color: #aaa; }
 
-/* ═══════════════════════════════════════════
-   PAGES 3 / 5 / 7 / 9 — ENVELOPE LETTER PAGES
-   Uses the same lme-* component as the page-8
-   gallery, scaled up to fill the page.
-═══════════════════════════════════════════ */
-
 .envelope-label {
   font-family: var(--font-main); font-size: 1.3rem; color: #c2637a;
   letter-spacing: 1px; opacity: .85; margin-bottom: 1.6rem;
   text-align: center;
 }
 
-/* Full-page envelope scene — centred column */
 .env-page-scene {
   display: flex; flex-direction: column; align-items: center;
   gap: 2rem; width: 100%; max-width: 480px;
 }
 
-/* The tappable envelope button — scaled-up lock-mini-env */
 .env-page-btn {
   display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
   background: none; border: none; cursor: pointer;
@@ -227,18 +206,15 @@ html, body {
 .env-page-btn:active { transform: scale(.94); }
 .env-page-btn.opened { pointer-events: none; }
 
-/* The envelope illustration — same construction as lock-mini-env but 4× bigger */
 .env-page-env {
   position: relative;
   width: min(320px, 80vw);
-  height: min(230px, 57.5vw);   /* 72% of width — classic envelope ratio */
+  height: min(230px, 57.5vw); 
   filter: drop-shadow(0 8px 24px rgba(244,143,177,.4));
   transition: filter .3s ease;
 }
 .env-page-btn.opened .env-page-env { filter: drop-shadow(0 4px 12px rgba(244,143,177,.2)); }
 
-/* Shared child styles (lme-body / lme-flap already defined in page-8 section,
-   but env-page-env uses them at a different size — override via parent selector) */
 .env-page-env .lme-body {
   position: absolute; inset: 0;
   background: linear-gradient(160deg, #ffd6e0, #f9b8c8);
@@ -256,7 +232,6 @@ html, body {
   background: #f9c8d4;
 }
 
-/* Heart seal — centred over the flap fold */
 .env-page-seal {
   position: absolute;
   top: 46%; left: 50%;
@@ -283,7 +258,7 @@ html, body {
 }
 .env-page-btn.opened .env-page-tap { opacity: 0; }
 
-/* Continue button — hidden until letter modal has been opened */
+/* Continue button */
 .env-page-continue {
   opacity: 0; transform: translateY(12px);
   transition: opacity .45s ease, transform .45s ease;
@@ -293,7 +268,6 @@ html, body {
   opacity: 1; transform: translateY(0); pointer-events: auto;
 }
 
-/* Shared letter-img / letter-placeholder (used in modal and lock reveal) */
 .letter-img { width: 100%; height: auto; display: block; border-radius: 8px; }
 
 .letter-placeholder {
@@ -302,10 +276,7 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   background: repeating-linear-gradient(transparent,transparent 31px,rgba(255,182,193,.15) 31px,rgba(255,182,193,.15) 32px);
 }
-
-/* ═══════════════════════════════════════════
-   PAGE 4 — CONNECTIONS
-═══════════════════════════════════════════ */
+x
 .conn-wrap {
   display: flex; flex-direction: column; align-items: center; gap: .9rem;
   width: 100%; max-width: 560px;
@@ -327,7 +298,6 @@ html, body {
 
 .conn-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; width: 100%; }
 .conn-tile {
-  /* Shadows Into Light bold (font-main + weight 700 for heavier feel) */
   font-family: var(--font-main); font-size: clamp(1rem,3.2vw,1.3rem); font-weight: 700;
   color: #3a2030; background: #fff0f3; border: 2px solid var(--pink); border-radius: 10px;
   min-height: 64px; padding: .5rem .25rem; cursor: pointer;
@@ -346,7 +316,6 @@ html, body {
 @keyframes connShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
 .conn-tile.shake { animation: connShake .45s ease; }
 
-/* Controls row: Shuffle | Deselect All | Submit */
 .conn-controls {
   display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; width: 100%;
 }
@@ -362,7 +331,6 @@ html, body {
 .conn-ctrl-btn:not(:disabled):hover { background: var(--blush); }
 .conn-ctrl-btn:not(:disabled):active { transform: scale(.95); }
 
-/* Submit becomes filled-pink when active */
 .conn-ctrl-submit.active {
   background: linear-gradient(135deg,#f9a8b8,#f48fb1); border-color: #f48fb1; color: #fff;
   box-shadow: 0 4px 16px rgba(244,143,177,.4);
@@ -390,9 +358,6 @@ html, body {
 @media (min-width:600px) { .conn-tile { min-height: 72px; } .conn-wrap { max-width: 600px; } }
 @media (min-width:900px) { .conn-tile { min-height: 80px; } .conn-grid { gap: 10px; } }
 
-/* ═══════════════════════════════════════════
-   PAGE 6 — STRANDS
-═══════════════════════════════════════════ */
 .strands-wrap {
   display: flex; flex-direction: column; align-items: center; gap: .8rem;
   width: 100%; max-width: 480px;
@@ -460,16 +425,12 @@ html, body {
 @media (min-width:600px) { .strands-wrap { max-width: 520px; } .st-cell { font-size: 1.5rem; } }
 @media (min-width:900px) { .strands-wrap { max-width: 560px; } .st-cell { font-size: 1.7rem; } }
 
-/* ═══════════════════════════════════════════
-   PAGE 8 — CODE LOCK
-═══════════════════════════════════════════ */
 .lock-wrap {
   display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
   width: 100%; max-width: 420px;
 }
 .lock-box-area { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
 
-/* CSS treasure box */
 .lock-box {
   position: relative; width: min(220px,60vw);
   display: flex; flex-direction: column; align-items: center;
@@ -515,7 +476,7 @@ html, body {
 @keyframes lockShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(4px)} }
 .lock-box.shake { animation: lockShake .45s ease; }
 
-/* Reveal card — appears in flow below box after unlock */
+/* Reveal card */
 .lock-box-reveal {
   width: min(360px,90vw);
   background: #fffafa; border: 2px dashed var(--pink); border-radius: 12px;
@@ -582,9 +543,6 @@ html, body {
 .lme-seal--lock { background: var(--grey-light); border-color: #ccc; font-size: .75rem; }
 .lock-env-num { font-family: var(--font-title); font-weight: 700; font-size: 1.1rem; color: #c2637a; }
 
-/* ═══════════════════════════════════════════
-   LETTER MODAL
-═══════════════════════════════════════════ */
 .ltr-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .ltr-modal[hidden] { display: none; }
 .ltr-modal-backdrop { position: absolute; inset: 0; background: rgba(255,220,230,.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }

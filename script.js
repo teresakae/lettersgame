@@ -1,8 +1,4 @@
-/* ════════════════════════════════════════════
-   GIFT WEBSITE — script.js
-════════════════════════════════════════════ */
-
-// ── Navigation ───────────────────────────────
+// Navigation
 function goToPage(id, cb) {
   var cur = document.querySelector('.page.active');
   var tgt = document.getElementById(id);
@@ -24,9 +20,6 @@ function goToPage(id, cb) {
   }
 }
 
-// ── Shared letter modal ───────────────────────
-// Used by envelope letter pages (3,5,7,9) AND the page-8 gallery.
-// openLetterModal(src, onCloseCb) — onCloseCb fires once when the modal is closed.
 var _modalCloseCallback = null;
 
 (function () {
@@ -63,10 +56,7 @@ var _modalCloseCallback = null;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeMod(); });
 })();
 
-// ── Envelope letter pages (3 / 5 / 7 / 9) ───
-// initEnvPage(btnId, nextPage)
-//   btnId    — id of the .env-page-btn element
-//   nextPage — page id to navigate to when the modal X is closed
+// Envelope letter pages
 function initEnvPage(btnId, nextPage) {
   var btn = document.getElementById(btnId);
   if (!btn) return;
@@ -79,13 +69,10 @@ function initEnvPage(btnId, nextPage) {
   function openEnv() {
     if (opened) return;
     opened = true;
-    // Animate flap open on the envelope illustration
     btn.classList.add('opened');
-    // Small delay so the flap animation plays before the modal appears
     var src = btn.dataset.src;
     setTimeout(function () {
       openLetterModal(src, function () {
-        // Modal X pressed — navigate immediately, reset envelope for re-entry
         goToPage(nextPage, function () {
           setTimeout(function () {
             opened = false;
@@ -97,15 +84,12 @@ function initEnvPage(btnId, nextPage) {
   }
 }
 
-// Full page flow:
-//   page-1 → page-3 → page-2 → page-5 → page-4 → page-7 → page-6 → page-9 → page-8
-initEnvPage('env-page-3-btn', 'page-2'); // Letter A → Wordle
-initEnvPage('env-page-5-btn', 'page-4'); // Letter B → Connections
-initEnvPage('env-page-7-btn', 'page-6'); // Letter C → Strands
-initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
+initEnvPage('env-page-3-btn', 'page-2'); 
+initEnvPage('env-page-5-btn', 'page-4'); 
+initEnvPage('env-page-7-btn', 'page-6'); 
+initEnvPage('env-page-9-btn', 'page-8'); 
 
-// ── PAGE 1 — Landing ──────────────────────────
-// page-1 → page-3  (Letter A shown first)
+// PAGE 1 — Landing
 (function () {
   var btn = document.getElementById('btn-start');
   if (!btn) return;
@@ -114,8 +98,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
   btn.addEventListener('touchend',   function () { btn.style.transform = ''; },           { passive: true });
 })();
 
-// ── PAGE 2 — Wordle ───────────────────────────
-// page-2 → page-5  (Letter B)
+// PAGE 2 — Wordle
 (function () {
   var WORD = 'SHARK', WLEN = 5, ROWS = 6;
   var WIN_MSGS = ['you got it \u2661','yes!! \u2661','perfect \u2661',"you're amazing \u2661",'SHARK! \u2661'];
@@ -243,19 +226,17 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
     var k = e.target.closest('.kb-key'); if (k) handleKey(k.dataset.key);
   });
 
-  // page-2 → page-5  (Letter B)
   btnCon.addEventListener('click', function () { goToPage('page-5'); });
   btnRet.addEventListener('click', reset);
   buildGrid();
 })();
 
-// ── PAGE 4 — Connections ──────────────────────
-// page-4 → page-7  (Letter C)
+// PAGE 4 — Connections 
 (function () {
   var CATS = [
     { theme:'Starts with C',            words:['car','catito','cheemse','coffee'],   color:'#ffe4e1', tc:'#c2637a', level:0 },
     { theme:'Contains Double Letters',  words:['fatpee','otter','pee','pretty'],     color:'#ffb6c1', tc:'#9e3a52', level:1 },
-    { theme:'Meme / Internet Spellings',words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
+    { theme:'approx. BB words',words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
     { theme:'Ways to Secure or Close',  words:['clamp','dog','paket','seal'],        color:'#c2637a', tc:'#fff',    level:3 },
   ];
 
@@ -417,8 +398,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
   build();
 })();
 
-// ── PAGE 6 — Strands ──────────────────────────
-// page-6 → page-9  (Letter D)
+// PAGE 6 — Strands 
 (function () {
   var ROWS = 8, COLS = 6;
   var LETTERS = [
@@ -603,18 +583,17 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
   gridEl.addEventListener('pointerup',  function(e){e.preventDefault();endDrag();});
   gridEl.addEventListener('pointercancel',function(){dragging=false;path=[];pathSet={};gridEl.querySelectorAll('.st-cell.selecting').forEach(function(e){e.classList.remove('selecting');});});
 
-  // page-6 → page-9  (Letter D)
   contBtn.addEventListener('click', function(){goToPage('page-9');});
   buildGrid();
 })();
 
-// ── PAGE 8 — Code Lock ────────────────────────
+// PAGE 8 — Code Lock
 (function () {
   var CODE = '2705', entered = '', unlocked = false;
 
   var boxEl  = document.getElementById('lock-box');
   var numpad = document.getElementById('lock-numpad');
-  var env5   = document.getElementById('lock-env-5');   // 5th envelope is locked
+  var env5   = document.getElementById('lock-env-5');  
 
   function syncDigits() {
     for (var i = 0; i < 4; i++) {
@@ -663,21 +642,17 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
     unlocked = true; flashDigs('correct');
     setTimeout(function(){boxEl.classList.add('open');}, 200);
     setTimeout(function(){
-      // Unlock env5 in the gallery so it can be tapped
       unlockEnv5();
-      // Show letter-e in the fullscreen modal; X resets everything
       openLetterModal('assets/letter-e.jpg', resetLock);
     }, 900);
   }
 
   function resetLock() {
-    // Re-lock state
     unlocked = false;
     entered  = '';
     syncDigits();
-    // Close the box animation
     boxEl.classList.remove('open');
-    // Re-lock env5
+  
     if (env5) {
       env5.disabled = true;
       env5.classList.add('lock-env-btn--locked');
@@ -705,7 +680,6 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
     if (s) { s.classList.remove('lme-seal--lock'); s.textContent = '\u2661'; }
   }
 
-  // Gallery buttons — all use the shared modal (no navigate-away callback needed)
   document.querySelectorAll('.lock-env-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       if (btn.disabled) return;
