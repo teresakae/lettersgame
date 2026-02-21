@@ -118,7 +118,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
 // page-2 → page-5  (Letter B)
 (function () {
   var WORD = 'SHARK', WLEN = 5, ROWS = 6;
-  var WIN_MSGS = ['you got it \u2661','yes!! \u2661','perfect \u2661',"you're amazing \u2661",'SHARK! \u2661'];
+  var WIN_MSGS = ['bb got it \u2661','yes!! \u2661','perfect \u2661',"my bb is so goated \u2661",'SHARK! \u2661'];
   var row = 0, col = 0, cur = '', over = false;
 
   var grid   = document.getElementById('wordle-grid');
@@ -255,7 +255,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
   var CATS = [
     { theme:'Starts with C',            words:['car','catito','cheemse','coffee'],   color:'#ffe4e1', tc:'#c2637a', level:0 },
     { theme:'Contains Double Letters',  words:['fatpee','otter','pee','pretty'],     color:'#ffb6c1', tc:'#9e3a52', level:1 },
-    { theme:'Meme / Internet Spellings',words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
+    { theme:'BB Ways to Spell',words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
     { theme:'Ways to Secure or Close',  words:['clamp','dog','paket','seal'],        color:'#c2637a', tc:'#fff',    level:3 },
   ];
 
@@ -360,7 +360,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
       requestAnimationFrame(function () { b.classList.add('revealed'); });
       if (solved.length === CATS.length) {
         setTimeout(function () {
-          over = true; msgEl.textContent = 'you got them all!! \u2661'; msgEl.hidden = false;
+          over = true; msgEl.textContent = 'good job bb!! \u2661'; msgEl.hidden = false;
           actsEl.hidden = false; contBtn.hidden = false; retBtn.hidden = true; syncBtns();
         }, 500);
       }
@@ -587,7 +587,7 @@ initEnvPage('env-page-9-btn', 'page-8'); // Letter D → Code Lock
       foundRow.appendChild(chip);
     }, ans.path.length*60+100);
     if (ANSWERS.every(function(a){return found[a.word];})) {
-      setTimeout(function(){ showToast('you found them all!! \u2661'); actsEl.hidden=false; contBtn.hidden=false; }, ans.path.length*60+400);
+      setTimeout(function(){ showToast('bb found them all!! \u2661'); actsEl.hidden=false; contBtn.hidden=false; }, ans.path.length*60+400);
     }
   }
 
