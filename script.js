@@ -1,8 +1,7 @@
-// Navigation
 function goToPage(id, cb) {
   var cur = document.querySelector('.page.active');
   var tgt = document.getElementById(id);
-  if (!tgt) { console.warn('goToPage: missing #' + id); return; }
+  if (!tgt) { return; }
   if (cur && cur !== tgt) {
     cur.style.animation = 'fadeOut .35s ease forwards';
     setTimeout(function () {
@@ -56,7 +55,6 @@ var _modalCloseCallback = null;
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeMod(); });
 })();
 
-// Envelope letter pages
 function initEnvPage(btnId, nextPage) {
   var btn = document.getElementById(btnId);
   if (!btn) return;
@@ -84,12 +82,11 @@ function initEnvPage(btnId, nextPage) {
   }
 }
 
-initEnvPage('env-page-3-btn', 'page-2'); 
-initEnvPage('env-page-5-btn', 'page-4'); 
-initEnvPage('env-page-7-btn', 'page-6'); 
-initEnvPage('env-page-9-btn', 'page-8'); 
+initEnvPage('env-page-3-btn', 'page-2');
+initEnvPage('env-page-5-btn', 'page-4');
+initEnvPage('env-page-7-btn', 'page-6');
+initEnvPage('env-page-9-btn', 'page-8');
 
-// PAGE 1 — Landing
 (function () {
   var btn = document.getElementById('btn-start');
   if (!btn) return;
@@ -98,10 +95,9 @@ initEnvPage('env-page-9-btn', 'page-8');
   btn.addEventListener('touchend',   function () { btn.style.transform = ''; },           { passive: true });
 })();
 
-// PAGE 2 — Wordle
 (function () {
   var WORD = 'SHARK', WLEN = 5, ROWS = 6;
-  var WIN_MSGS = ['you got it \u2661','yes!! \u2661','perfect \u2661',"you're amazing \u2661",'SHARK! \u2661'];
+  var WIN_MSGS = ['bb got it \u2661','YIBBEE!! \u2661','bb goated \u2661',"bb so smort!!! \u2661",'SHARK! \u2661'];
   var row = 0, col = 0, cur = '', over = false;
 
   var grid   = document.getElementById('wordle-grid');
@@ -229,14 +225,15 @@ initEnvPage('env-page-9-btn', 'page-8');
   btnCon.addEventListener('click', function () { goToPage('page-5'); });
   btnRet.addEventListener('click', reset);
   buildGrid();
+
+  window.resetWordle = reset;
 })();
 
-// PAGE 4 — Connections 
 (function () {
   var CATS = [
     { theme:'Starts with C',            words:['car','catito','cheemse','coffee'],   color:'#ffe4e1', tc:'#c2637a', level:0 },
     { theme:'Contains Double Letters',  words:['fatpee','otter','pee','pretty'],     color:'#ffb6c1', tc:'#9e3a52', level:1 },
-    { theme:'approx. BB words',words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
+    { theme:'bb Ways to Spell',         words:['birb','dawg','sharmk','smort'],      color:'#f48fb1', tc:'#fff',    level:2 },
     { theme:'Ways to Secure or Close',  words:['clamp','dog','paket','seal'],        color:'#c2637a', tc:'#fff',    level:3 },
   ];
 
@@ -341,7 +338,7 @@ initEnvPage('env-page-9-btn', 'page-8');
       requestAnimationFrame(function () { b.classList.add('revealed'); });
       if (solved.length === CATS.length) {
         setTimeout(function () {
-          over = true; msgEl.textContent = 'you got them all!! \u2661'; msgEl.hidden = false;
+          over = true; msgEl.textContent = 'bb got them all!! \u2661'; msgEl.hidden = false;
           actsEl.hidden = false; contBtn.hidden = false; retBtn.hidden = true; syncBtns();
         }, 500);
       }
@@ -392,13 +389,13 @@ initEnvPage('env-page-9-btn', 'page-8');
     });
   }
 
-  // page-4 → page-7  (Letter C)
   contBtn.addEventListener('click', function () { goToPage('page-7'); });
   retBtn.addEventListener('click', build);
   build();
+
+  window.resetConnections = build;
 })();
 
-// PAGE 6 — Strands 
 (function () {
   var ROWS = 8, COLS = 6;
   var LETTERS = [
@@ -567,7 +564,7 @@ initEnvPage('env-page-9-btn', 'page-8');
       foundRow.appendChild(chip);
     }, ans.path.length*60+100);
     if (ANSWERS.every(function(a){return found[a.word];})) {
-      setTimeout(function(){ showToast('you found them all!! \u2661'); actsEl.hidden=false; contBtn.hidden=false; }, ans.path.length*60+400);
+      setTimeout(function(){ showToast('bb found them all!! \u2661'); actsEl.hidden=false; contBtn.hidden=false; }, ans.path.length*60+400);
     }
   }
 
@@ -585,15 +582,16 @@ initEnvPage('env-page-9-btn', 'page-8');
 
   contBtn.addEventListener('click', function(){goToPage('page-9');});
   buildGrid();
+
+  window.resetStrands = buildGrid;
 })();
 
-// PAGE 8 — Code Lock
 (function () {
   var CODE = '2705', entered = '', unlocked = false;
 
   var boxEl  = document.getElementById('lock-box');
   var numpad = document.getElementById('lock-numpad');
-  var env5   = document.getElementById('lock-env-5');  
+  var env5   = document.getElementById('lock-env-5');
 
   function syncDigits() {
     for (var i = 0; i < 4; i++) {
@@ -643,7 +641,9 @@ initEnvPage('env-page-9-btn', 'page-8');
     setTimeout(function(){boxEl.classList.add('open');}, 200);
     setTimeout(function(){
       unlockEnv5();
-      openLetterModal('assets/letter-e.jpg', resetLock);
+      openLetterModal('assets/letter-e.jpg', function() {
+        goToPage('page-10');
+      });
     }, 900);
   }
 
@@ -652,7 +652,6 @@ initEnvPage('env-page-9-btn', 'page-8');
     entered  = '';
     syncDigits();
     boxEl.classList.remove('open');
-  
     if (env5) {
       env5.disabled = true;
       env5.classList.add('lock-env-btn--locked');
@@ -695,4 +694,20 @@ initEnvPage('env-page-9-btn', 'page-8');
   });
 
   syncDigits();
+
+  window.resetLock = resetLock;
+})();
+
+(function () {
+  var btn = document.getElementById('btn-play-again');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    if (typeof window.resetWordle      === 'function') window.resetWordle();
+    if (typeof window.resetConnections === 'function') window.resetConnections();
+    if (typeof window.resetStrands     === 'function') window.resetStrands();
+    if (typeof window.resetLock        === 'function') window.resetLock();
+    goToPage('page-1');
+  });
+  btn.addEventListener('touchstart', function () { btn.style.transform = 'scale(.96)'; }, { passive: true });
+  btn.addEventListener('touchend',   function () { btn.style.transform = ''; },           { passive: true });
 })();
