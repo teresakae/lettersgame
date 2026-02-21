@@ -422,7 +422,7 @@ initEnvPage('env-page-9-btn', 'page-8');
   var COLORS = ['#ffd6e0','#ffb6c1','#ff8fab','#f48fb1','#e07a9a','#c2637a','#a84f66'];
   var HINTS = ['bb thimgs','glhf, bb'], THRESH = [3,8];
 
-  var found = {}, colorIdx = 0, validCount = 0, hintsGot = 0;
+  var found = {}, colorIdx = 0, validCount = 0, hintsGot = 0, usedPaths = {};
   var dragging = false, path = [], pathSet = {};
 
   var gridEl   = document.getElementById('strands-grid');
@@ -468,7 +468,7 @@ initEnvPage('env-page-9-btn', 'page-8');
   dismissEl.addEventListener('touchend', function (e) { e.preventDefault(); bannerEl.hidden = true; });
 
   function buildGrid() {
-    gridEl.innerHTML = ''; found = {}; colorIdx = 0; validCount = 0; hintsGot = 0;
+    gridEl.innerHTML = ''; found = {}; colorIdx = 0; validCount = 0; hintsGot = 0; usedPaths = {};
     foundRow.innerHTML = ''; toastEl.hidden = true;
     actsEl.hidden = true; contBtn.hidden = true; bannerEl.hidden = true;
     buildHintBar(); updateHintBar();
@@ -538,6 +538,9 @@ initEnvPage('env-page-9-btn', 'page-8');
   }
 
   function onValid(p) {
+    var key = p.map(function(x){return x.r+','+x.c;}).sort().join('|');
+    if (usedPaths[key]) { flashWrong(p); return; }
+    usedPaths[key] = true;
     validCount++; updateHintBar(); tryHint();
     flashWrong(p); showToast('\u2661 +1 hint progress');
   }
